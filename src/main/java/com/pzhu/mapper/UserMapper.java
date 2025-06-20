@@ -148,6 +148,8 @@ public interface UserMapper {
 	boolean upDateTher(@Param("upassword")String upassword,@Param("uid")int uid,@Param("utelephone")String utelephone);
 
 	// Get students of selected class
+	// Get students of selected class
+	// Get students of selected class
 	@Select("SELECT userstu.uid,uname,sex,ugrade,upartment,utelephone FROM userstu \r\n" +
 			"INNER JOIN ct_stu ON userstu.uid= ct_stu.uid \r\n" +
 			"WHERE ct_stu.cid = #{cid} AND ct_stu.classsort =#{classsort} ")
