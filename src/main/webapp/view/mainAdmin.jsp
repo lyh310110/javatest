@@ -18,6 +18,7 @@
 	<h2>教务处后台管理</h2>
 	<img id="yonghu" alt="用户" src="../img/userblack.png">
 	<span id="name1">&nbsp;${sessionScope.name}</span>
+	<a href="/logout" id="logoutBtn" style="float: right; margin-right: 20px; color: #333; text-decoration: none;">退出</a>
 	<div id="setime">
 		<img id="shalou" alt="时间" src="../img/shalou.png">
 		<span id="starttime">2019-1-1</span>

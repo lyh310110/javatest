@@ -19,6 +19,7 @@
 		<span id="name1">&nbsp;${sessionScope.name}</span>
 		<img id="bumen" alt="用户" src="../img/bumen.png">
 		<span id="part1">&nbsp;${sessionScope.partment}</span>
+		<a href="/logout" id="logoutBtn" style="margin-left: 15px; color: #333; text-decoration: none;">退出</a>
 	</div>
 	<div id="setime">
 		<img id="shalou" alt="时间" src="../img/shalou.png">

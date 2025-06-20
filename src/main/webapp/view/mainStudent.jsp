@@ -14,6 +14,7 @@
 	    <h2>大学生选课系统</h2>
 	    <img id="yonghu" alt="用户" src="../img/userblack.png">
 	    <span id="name1"> ${sessionScope.name}</span>
+		<a href="/logout" id="logoutBtn" style="float: right; margin-right: 20px; color: #333; text-decoration: none;">退出</a>
 	    <img id="nianji" alt="年级" src="../img/nianji.png">
 	    <span id="grade1"> ${sessionScope.grade}</span>
 	    <img id="banji" alt="班级" src="../img/banji.png">
