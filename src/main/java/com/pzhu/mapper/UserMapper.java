@@ -102,54 +102,39 @@ public interface UserMapper {
 	})
 
 	// Delete teacher
-	@Delete("DELETE FROM userther WHERE uid = #{uid}")
 	boolean deleteTechInfo(int uid);
 
 	// Add teacher
-	@Insert("INSERT INTO userther VALUES(#{uid},#{uname},#{sex},#{upassword},#{upartment},#{utelephone},'学生')")
 	boolean insertTechInfo(@Param("uid")int uid,@Param("uname")String uname,@Param("sex")String sex,
 						   @Param("upassword")String upassword,@Param("upartment")String upartment,
 						   @Param("utelephone")String utelephone);
 
 	// Get all teachers
-	@Select("select * FROM userther")
 	List<User> getTechAll();
 
 	// Delete student
-	@Delete("DELETE FROM userstu WHERE uid = #{uid}")
 	boolean deleteStuInfo(int uid);
 
 	// Add student
-	@Insert("INSERT INTO userstu VALUES(#{uid},#{uname},#{sex},#{upassword},#{ugrade},#{upartment},#{utelephone},'学生')")
 	boolean insertStuInfo(@Param("uid")int uid,@Param("uname")String uname,@Param("sex")String sex,
 						  @Param("upassword")String upassword,@Param("ugrade")int ugrade,
 						  @Param("upartment")String upartment,@Param("utelephone")String utelephone);
 
 	// Get all students
-	@Select("select * FROM userstu")
 	List<User> getStuAll();
 
-	@Select("select * FROM userstu WHERE uid = #{uid}")
 	User getStu(int uid);
 
-	@Select("select * FROM userther WHERE uid = #{uid}")
 	User getTher(int uid);
 
-	@Select("select * FROM useradm WHERE uid = #{uid}")
 	User getAdm(int uid);
 
-	@Update("UPDATE userstu SET upassword = #{upassword} WHERE uid = #{uid} and utelephone = #{utelephone} ")
 	boolean upDateStu(@Param("upassword")String upassword,@Param("uid")int uid,@Param("utelephone")String utelephone);
 
-	@Update("UPDATE useradm SET upassword = #{upassword} WHERE uid = #{uid} and utelephone = #{utelephone} ")
 	boolean upDateAdm(@Param("upassword")String upassword,@Param("uid")int uid,@Param("utelephone")String utelephone);
 
-	@Update("UPDATE userther SET upassword = #{upassword} WHERE uid = #{uid} and utelephone = #{utelephone} ")
 	boolean upDateTher(@Param("upassword")String upassword,@Param("uid")int uid,@Param("utelephone")String utelephone);
 
 	// Get students of selected class
-	@Select("SELECT userstu.uid,uname,sex,ugrade,upartment,utelephone FROM userstu \r\n" +
-			"INNER JOIN ct_stu ON userstu.uid= ct_stu.uid \r\n" +
-			"WHERE ct_stu.cid = #{cid} AND ct_stu.classsort =#{classsort} ")
 	List<User> getmyClassesperson(@Param("cid")int cid,@Param("classsort")int classsort);
 }

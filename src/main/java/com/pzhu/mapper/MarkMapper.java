@@ -18,6 +18,5 @@ public interface MarkMapper {
 	})
 
 	//获得该uid，的cid的分数
-	@Select("SELECT * FROM mark WHERE uid=#{uid} AND cid =#{cid}")
 	MarkBean getScoresByUidCid(@Param("uid")int uid,@Param("cid")int cid);
 }

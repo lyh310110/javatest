@@ -17,9 +17,7 @@ public interface SelectTimeMapper {
 		@Result(property="endtime",column="endtime")
 	})
 	
-	@Select("select * from select_time")
 	SelectTime getSelectTime();
 	
-	@Update("UPDATE `select_time` SET `starttime`=#{starttime}, `endtime`=#{endtime} WHERE (`sid`='1')")
 	boolean setSelectTime(@Param("starttime")java.sql.Date starttime,@Param("endtime")java.sql.Date endtime);
 }
