@@ -59,7 +59,7 @@ public interface CourseTeacherMapper {
 	List<CourseTeacher> getClassHasUesd(String ctlocal);
 
 	//插入之前先删除教室节次信息为空的行DELETE FROM cor_ther WHERE ctlocal='' AND cttime='' and cid = #{cid} and uid =#{uid} and classsort=#{classsort}
-	boolean deleteCor_TherCT(@Param("cid")int cid,@Param("uid")int uid,@Param("classsort")int classsort);
+	//boolean deleteCor_TherCT(@Param("cid")int cid,@Param("uid")int uid,@Param("classsort")int classsort);
 
 	//插入cor_ther排课教室节次信息
 	@Insert("INSERT INTO cor_ther(ctlocal,cttime,classsort,cid,uid,wid) VALUES(#{ctlocal},#{cttime},#{classsort},#{cid},#{uid},#{wid})")
@@ -92,14 +92,27 @@ public interface CourseTeacherMapper {
 //			"where cor_ther.uid= #{uid}\r\n" +
 //			"GROUP BY cname,classsort")
 //	List<CourseTeacher> getMyClasses(int uid);
-	@Select("SELECT ct.*, c.cname, u.uname, " +
-			"GROUP_CONCAT(DISTINCT CONCAT('[', wt.startweek, '-', wt.endweek, '] ', ct.ctlocal, ' ', ct.cttime) SEPARATOR ', ') AS schedule " +
+//	@Select("SELECT ct.*, c.cname, u.uname, " +
+//			"GROUP_CONCAT(DISTINCT CONCAT('[', wt.startweek, '-', wt.endweek, '] ', ct.ctlocal, ' ', ct.cttime) SEPARATOR ', ') AS schedule " +
+//			"FROM cor_ther ct " +
+//			"JOIN course c ON ct.cid = c.cid " +
+//			"JOIN userther u ON ct.uid = u.uid " +
+//			"LEFT JOIN weektime wt ON ct.wid = wt.wid " +
+//			"WHERE ct.uid = #{uid} AND ct.ctstatus = '已排课' " +
+//			"GROUP BY ct.ctid")
+//	List<CourseTeacher> getMyClasses(@Param("uid")int uid);
+	@Select("SELECT " +
+			"ct.ctid, ct.cid, ct.classsort, " +
+			"c.cname, u.uname, " +
+			"(SELECT COUNT(*) FROM ct_stu WHERE ct_stu.cid = ct.cid AND ct_stu.classsort = ct.classsort) as currentCount, " +
+			"c.climitCount, c.cmaxCount, " +
+			"GROUP_CONCAT(DISTINCT CONCAT('[', wt.startweek, '-', wt.endweek, '] ', ct.ctlocal, ' ', ct.cttime) ORDER BY wt.startweek SEPARATOR '; ') as ctlocal " +
 			"FROM cor_ther ct " +
 			"JOIN course c ON ct.cid = c.cid " +
 			"JOIN userther u ON ct.uid = u.uid " +
 			"LEFT JOIN weektime wt ON ct.wid = wt.wid " +
-			"WHERE ct.uid = #{uid} AND ct.ctstatus = '已排课' " +
-			"GROUP BY ct.ctid")
+			"WHERE ct.uid = #{uid} " +
+			"GROUP BY ct.cid, ct.classsort, ct.ctid, c.cname, u.uname, c.climitCount, c.cmaxCount")
 	List<CourseTeacher> getMyClasses(@Param("uid")int uid);
 
 	//查询老师未通过的开班信息

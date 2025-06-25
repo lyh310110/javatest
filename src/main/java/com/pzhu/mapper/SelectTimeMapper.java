@@ -19,7 +19,6 @@ public interface SelectTimeMapper {
 	})
 
 	@Select("select * from select_time")
-
 	SelectTime getSelectTime();
 
 	@Update("UPDATE `select_time` SET `starttime`=#{starttime}, `endtime`=#{endtime} WHERE (`sid`='1')")
