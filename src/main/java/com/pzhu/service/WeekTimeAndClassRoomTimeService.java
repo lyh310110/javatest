@@ -33,7 +33,7 @@ public class WeekTimeAndClassRoomTimeService {
 	@Transactional
 	public boolean setCourseStatusPassed(int cid,int uid,int classsort,String[] startWeek,String[] endWeek,String[] classRoomTime,String result) {
 		int start,end,crtid;
-		//courseTeacherMapper.deleteCor_TherCT(cid, uid,classsort); 暂不删除，空的 ctlocal 和 cttime 作为教师与课程表的绑定
+		courseTeacherMapper.deleteCor_TherCT(cid, uid,classsort); //暂不删除，空的 ctlocal 和 cttime 作为教师与课程表的绑定
 		for (int i = 0; i < classRoomTime.length; i++) {
 			start = Integer.parseInt(startWeek[i]);
 			end =Integer.parseInt(endWeek[i]);

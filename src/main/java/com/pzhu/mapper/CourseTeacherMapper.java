@@ -60,7 +60,10 @@ public interface CourseTeacherMapper {
 
 	//插入之前先删除教室节次信息为空的行DELETE FROM cor_ther WHERE ctlocal='' AND cttime='' and cid = #{cid} and uid =#{uid} and classsort=#{classsort}
 	//boolean deleteCor_TherCT(@Param("cid")int cid,@Param("uid")int uid,@Param("classsort")int classsort);
-
+	@Delete("DELETE FROM cor_ther WHERE ctlocal='' AND cttime='' AND cid = #{cid} AND uid = #{uid}")
+	boolean deleteCor_TherCT(@Param("cid") int cid,
+							 @Param("uid") int uid,
+							 @Param("classsort") int classsort);
 	//插入cor_ther排课教室节次信息
 	@Insert("INSERT INTO cor_ther(ctlocal,cttime,classsort,cid,uid,wid) VALUES(#{ctlocal},#{cttime},#{classsort},#{cid},#{uid},#{wid})")
 	boolean InsertCor_TherCT(@Param("ctlocal")String ctlocal,@Param("cttime")String cttime,@Param("classsort")int classsort,@Param("cid")int cid,@Param("uid")int uid,@Param("wid")int wid);
