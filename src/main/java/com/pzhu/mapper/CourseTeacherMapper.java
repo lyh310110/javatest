@@ -84,6 +84,12 @@ public interface CourseTeacherMapper {
 	@Insert("INSERT INTO cor_ther(ctlocal,cttime,cid,uid,classsort,ctstatus) VALUES('','',#{cid},#{uid},#{classsort},'未排课')")
 	boolean insertNewClass(@Param("cid")int cid,@Param("uid")int uid,@Param("classsort")int classsort);
 
+	// 修改插入排课信息的方法，改为更新已有记录
+	@Update("UPDATE cor_ther SET ctlocal=#{ctlocal}, cttime=#{cttime}, wid=#{wid}, ctstatus='已排课' WHERE cid=#{cid} AND uid=#{uid} AND classsort=#{classsort}")
+	boolean updateCorTherWithClassInfo(@Param("ctlocal")String ctlocal, @Param("cttime")String cttime,
+									   @Param("classsort")int classsort, @Param("cid")int cid,
+									   @Param("uid")int uid, @Param("wid")int wid);
+
 	//查询老师的开班信息
 	@Select("SELECT " +
 			"ct.ctid, ct.cid, ct.classsort, " +
