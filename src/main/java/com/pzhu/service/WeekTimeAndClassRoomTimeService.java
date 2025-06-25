@@ -42,10 +42,10 @@ public class WeekTimeAndClassRoomTimeService {
 			classRoomTimeMapper.setAlreadyStatus(crtid); // 设置 已排课
 			weekTimeAndClassRoomTimeMapper.insertWeekTime(start, end, crtid); //插入 weektime周排课表
 			int wid = weekTimeAndClassRoomTimeMapper.getWid(start, end, crtid);
-			courseTeacherMapper.InsertCor_TherCT(str[0],str[1],classsort,cid, uid,wid); //插入排课信息
+			courseTeacherMapper.InsertCor_TherCT(str[0],str[1],classsort+1,cid, uid,wid); //插入排课信息
 			courseMapper.setResult(result, cid);	//填写审批意见
 		}
-		courseTeacherMapper.updateCTStatus(cid, uid,classsort);
+		courseTeacherMapper.updateCTStatus(cid, uid,classsort+1);
 //			boolean flag1= courseMapper.setCourseStatusPassed(cid);
 //
 //			return flag1;
