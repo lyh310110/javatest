@@ -1,0 +1,565 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : mysql
+ Source Server Type    : MySQL
+ Source Server Version : 50719 (5.7.19)
+ Source Host           : localhost:3306
+ Source Schema         : course_selection_system
+
+ Target Server Type    : MySQL
+ Target Server Version : 50719 (5.7.19)
+ File Encoding         : 65001
+
+ Date: 25/06/2025 20:52:18
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for classroom
+-- ----------------------------
+DROP TABLE IF EXISTS `classroom`;
+CREATE TABLE `classroom`  (
+  `roomid` int(11) NOT NULL,
+  `ctlocal` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`roomid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of classroom
+-- ----------------------------
+INSERT INTO `classroom` VALUES (101, '教学楼101');
+INSERT INTO `classroom` VALUES (102, '教学楼102');
+INSERT INTO `classroom` VALUES (103, '教学楼103');
+INSERT INTO `classroom` VALUES (201, '教学楼201');
+INSERT INTO `classroom` VALUES (202, '教学楼202');
+INSERT INTO `classroom` VALUES (203, '教学楼203');
+INSERT INTO `classroom` VALUES (301, '教学楼301');
+INSERT INTO `classroom` VALUES (302, '教学楼302');
+INSERT INTO `classroom` VALUES (303, '教学楼303');
+
+-- ----------------------------
+-- Table structure for classroomtime
+-- ----------------------------
+DROP TABLE IF EXISTS `classroomtime`;
+CREATE TABLE `classroomtime`  (
+  `crtid` int(11) NOT NULL AUTO_INCREMENT,
+  `roomid` int(11) NULL DEFAULT NULL,
+  `ctlocal` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `timeid` int(11) NULL DEFAULT NULL,
+  `cttime` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `crtstatus` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`crtid`) USING BTREE,
+  INDEX `roomid`(`roomid`) USING BTREE,
+  INDEX `timeid`(`timeid`) USING BTREE,
+  CONSTRAINT `classroomtime_ibfk_1` FOREIGN KEY (`roomid`) REFERENCES `classroom` (`roomid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `classroomtime_ibfk_2` FOREIGN KEY (`timeid`) REFERENCES `classtime` (`timeid`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 226 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of classroomtime
+-- ----------------------------
+INSERT INTO `classroomtime` VALUES (1, 101, '教学楼101', 1, '周一 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (2, 102, '教学楼102', 1, '周一 上午 1-2', '已排课');
+INSERT INTO `classroomtime` VALUES (3, 103, '教学楼103', 1, '周一 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (4, 201, '教学楼201', 1, '周一 上午 1-2', '不可选');
+INSERT INTO `classroomtime` VALUES (5, 202, '教学楼202', 1, '周一 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (6, 203, '教学楼203', 1, '周一 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (7, 301, '教学楼301', 1, '周一 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (8, 302, '教学楼302', 1, '周一 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (9, 303, '教学楼303', 1, '周一 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (10, 101, '教学楼101', 2, '周一 上午 3-4', '已排课');
+INSERT INTO `classroomtime` VALUES (11, 102, '教学楼102', 2, '周一 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (12, 103, '教学楼103', 2, '周一 上午 3-4', '不可选');
+INSERT INTO `classroomtime` VALUES (13, 201, '教学楼201', 2, '周一 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (14, 202, '教学楼202', 2, '周一 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (15, 203, '教学楼203', 2, '周一 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (16, 301, '教学楼301', 2, '周一 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (17, 302, '教学楼302', 2, '周一 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (18, 303, '教学楼303', 2, '周一 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (19, 101, '教学楼101', 3, '周一 下午 5-6', '已排课');
+INSERT INTO `classroomtime` VALUES (20, 102, '教学楼102', 3, '周一 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (21, 103, '教学楼103', 3, '周一 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (22, 201, '教学楼201', 3, '周一 下午 5-6', '不可选');
+INSERT INTO `classroomtime` VALUES (23, 202, '教学楼202', 3, '周一 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (24, 203, '教学楼203', 3, '周一 下午 5-6', '不可选');
+INSERT INTO `classroomtime` VALUES (25, 301, '教学楼301', 3, '周一 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (26, 302, '教学楼302', 3, '周一 下午 5-6', '不可选');
+INSERT INTO `classroomtime` VALUES (27, 303, '教学楼303', 3, '周一 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (28, 101, '教学楼101', 4, '周一 下午 7-8', '已排课');
+INSERT INTO `classroomtime` VALUES (29, 102, '教学楼102', 4, '周一 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (30, 103, '教学楼103', 4, '周一 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (31, 201, '教学楼201', 4, '周一 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (32, 202, '教学楼202', 4, '周一 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (33, 203, '教学楼203', 4, '周一 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (34, 301, '教学楼301', 4, '周一 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (35, 302, '教学楼302', 4, '周一 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (36, 303, '教学楼303', 4, '周一 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (37, 101, '教学楼101', 5, '周一 晚上 9-10', '已排课');
+INSERT INTO `classroomtime` VALUES (38, 102, '教学楼102', 5, '周一 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (39, 103, '教学楼103', 5, '周一 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (40, 201, '教学楼201', 5, '周一 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (41, 202, '教学楼202', 5, '周一 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (42, 203, '教学楼203', 5, '周一 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (43, 301, '教学楼301', 5, '周一 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (44, 302, '教学楼302', 5, '周一 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (45, 303, '教学楼303', 5, '周一 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (46, 101, '教学楼101', 6, '周二 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (47, 102, '教学楼102', 6, '周二 上午 1-2', '不可选');
+INSERT INTO `classroomtime` VALUES (48, 103, '教学楼103', 6, '周二 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (49, 201, '教学楼201', 6, '周二 上午 1-2', '已排课');
+INSERT INTO `classroomtime` VALUES (50, 202, '教学楼202', 6, '周二 上午 1-2', '已排课');
+INSERT INTO `classroomtime` VALUES (51, 203, '教学楼203', 6, '周二 上午 1-2', '不可选');
+INSERT INTO `classroomtime` VALUES (52, 301, '教学楼301', 6, '周二 上午 1-2', '已排课');
+INSERT INTO `classroomtime` VALUES (53, 302, '教学楼302', 6, '周二 上午 1-2', '不可选');
+INSERT INTO `classroomtime` VALUES (54, 303, '教学楼303', 6, '周二 上午 1-2', '已排课');
+INSERT INTO `classroomtime` VALUES (55, 101, '教学楼101', 7, '周二 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (56, 102, '教学楼102', 7, '周二 上午 3-4', '已排课');
+INSERT INTO `classroomtime` VALUES (57, 103, '教学楼103', 7, '周二 上午 3-4', '已排课');
+INSERT INTO `classroomtime` VALUES (58, 201, '教学楼201', 7, '周二 上午 3-4', '不可选');
+INSERT INTO `classroomtime` VALUES (59, 202, '教学楼202', 7, '周二 上午 3-4', '已排课');
+INSERT INTO `classroomtime` VALUES (60, 203, '教学楼203', 7, '周二 上午 3-4', '已排课');
+INSERT INTO `classroomtime` VALUES (61, 301, '教学楼301', 7, '周二 上午 3-4', '已排课');
+INSERT INTO `classroomtime` VALUES (62, 302, '教学楼302', 7, '周二 上午 3-4', '不可选');
+INSERT INTO `classroomtime` VALUES (63, 303, '教学楼303', 7, '周二 上午 3-4', '已排课');
+INSERT INTO `classroomtime` VALUES (64, 101, '教学楼101', 8, '周二 下午 5-6', '不可选');
+INSERT INTO `classroomtime` VALUES (65, 102, '教学楼102', 8, '周二 下午 5-6', '已排课');
+INSERT INTO `classroomtime` VALUES (66, 103, '教学楼103', 8, '周二 下午 5-6', '已排课');
+INSERT INTO `classroomtime` VALUES (67, 201, '教学楼201', 8, '周二 下午 5-6', '已排课');
+INSERT INTO `classroomtime` VALUES (68, 202, '教学楼202', 8, '周二 下午 5-6', '已排课');
+INSERT INTO `classroomtime` VALUES (69, 203, '教学楼203', 8, '周二 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (70, 301, '教学楼301', 8, '周二 下午 5-6', '不可选');
+INSERT INTO `classroomtime` VALUES (71, 302, '教学楼302', 8, '周二 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (72, 303, '教学楼303', 8, '周二 下午 5-6', '不可选');
+INSERT INTO `classroomtime` VALUES (73, 101, '教学楼101', 9, '周二 下午 7-8', '已排课');
+INSERT INTO `classroomtime` VALUES (74, 102, '教学楼102', 9, '周二 下午 7-8', '不可选');
+INSERT INTO `classroomtime` VALUES (75, 103, '教学楼103', 9, '周二 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (76, 201, '教学楼201', 9, '周二 下午 7-8', '不可选');
+INSERT INTO `classroomtime` VALUES (77, 202, '教学楼202', 9, '周二 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (78, 203, '教学楼203', 9, '周二 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (79, 301, '教学楼301', 9, '周二 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (80, 302, '教学楼302', 9, '周二 下午 7-8', '已排课');
+INSERT INTO `classroomtime` VALUES (81, 303, '教学楼303', 9, '周二 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (82, 101, '教学楼101', 10, '周二 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (83, 102, '教学楼102', 10, '周二 晚上 9-10', '已排课');
+INSERT INTO `classroomtime` VALUES (84, 103, '教学楼103', 10, '周二 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (85, 201, '教学楼201', 10, '周二 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (86, 202, '教学楼202', 10, '周二 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (87, 203, '教学楼203', 10, '周二 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (88, 301, '教学楼301', 10, '周二 晚上 9-10', '已排课');
+INSERT INTO `classroomtime` VALUES (89, 302, '教学楼302', 10, '周二 晚上 9-10', '已排课');
+INSERT INTO `classroomtime` VALUES (90, 303, '教学楼303', 10, '周二 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (91, 101, '教学楼101', 11, '周三 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (92, 102, '教学楼102', 11, '周三 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (93, 103, '教学楼103', 11, '周三 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (94, 201, '教学楼201', 11, '周三 上午 1-2', '不可选');
+INSERT INTO `classroomtime` VALUES (95, 202, '教学楼202', 11, '周三 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (96, 203, '教学楼203', 11, '周三 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (97, 301, '教学楼301', 11, '周三 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (98, 302, '教学楼302', 11, '周三 上午 1-2', '不可选');
+INSERT INTO `classroomtime` VALUES (99, 303, '教学楼303', 11, '周三 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (100, 101, '教学楼101', 12, '周三 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (101, 102, '教学楼102', 12, '周三 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (102, 103, '教学楼103', 12, '周三 上午 3-4', '不可选');
+INSERT INTO `classroomtime` VALUES (103, 201, '教学楼201', 12, '周三 上午 3-4', '不可选');
+INSERT INTO `classroomtime` VALUES (104, 202, '教学楼202', 12, '周三 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (105, 203, '教学楼203', 12, '周三 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (106, 301, '教学楼301', 12, '周三 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (107, 302, '教学楼302', 12, '周三 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (108, 303, '教学楼303', 12, '周三 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (109, 101, '教学楼101', 13, '周三 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (110, 102, '教学楼102', 13, '周三 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (111, 103, '教学楼103', 13, '周三 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (112, 201, '教学楼201', 13, '周三 下午 5-6', '不可选');
+INSERT INTO `classroomtime` VALUES (113, 202, '教学楼202', 13, '周三 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (114, 203, '教学楼203', 13, '周三 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (115, 301, '教学楼301', 13, '周三 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (116, 302, '教学楼302', 13, '周三 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (117, 303, '教学楼303', 13, '周三 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (118, 101, '教学楼101', 14, '周三 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (119, 102, '教学楼102', 14, '周三 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (120, 103, '教学楼103', 14, '周三 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (121, 201, '教学楼201', 14, '周三 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (122, 202, '教学楼202', 14, '周三 下午 7-8', '不可选');
+INSERT INTO `classroomtime` VALUES (123, 203, '教学楼203', 14, '周三 下午 7-8', '不可选');
+INSERT INTO `classroomtime` VALUES (124, 301, '教学楼301', 14, '周三 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (125, 302, '教学楼302', 14, '周三 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (126, 303, '教学楼303', 14, '周三 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (127, 101, '教学楼101', 15, '周三 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (128, 102, '教学楼102', 15, '周三 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (129, 103, '教学楼103', 15, '周三 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (130, 201, '教学楼201', 15, '周三 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (131, 202, '教学楼202', 15, '周三 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (132, 203, '教学楼203', 15, '周三 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (133, 301, '教学楼301', 15, '周三 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (134, 302, '教学楼302', 15, '周三 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (135, 303, '教学楼303', 15, '周三 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (136, 101, '教学楼101', 16, '周四 上午 1-2', '不可选');
+INSERT INTO `classroomtime` VALUES (137, 102, '教学楼102', 16, '周四 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (138, 103, '教学楼103', 16, '周四 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (139, 201, '教学楼201', 16, '周四 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (140, 202, '教学楼202', 16, '周四 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (141, 203, '教学楼203', 16, '周四 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (142, 301, '教学楼301', 16, '周四 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (143, 302, '教学楼302', 16, '周四 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (144, 303, '教学楼303', 16, '周四 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (145, 101, '教学楼101', 17, '周四 上午 3-4', '不可选');
+INSERT INTO `classroomtime` VALUES (146, 102, '教学楼102', 17, '周四 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (147, 103, '教学楼103', 17, '周四 上午 3-4', '不可选');
+INSERT INTO `classroomtime` VALUES (148, 201, '教学楼201', 17, '周四 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (149, 202, '教学楼202', 17, '周四 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (150, 203, '教学楼203', 17, '周四 上午 3-4', '不可选');
+INSERT INTO `classroomtime` VALUES (151, 301, '教学楼301', 17, '周四 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (152, 302, '教学楼302', 17, '周四 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (153, 303, '教学楼303', 17, '周四 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (154, 101, '教学楼101', 18, '周四 下午 5-6', '不可选');
+INSERT INTO `classroomtime` VALUES (155, 102, '教学楼102', 18, '周四 下午 5-6', '不可选');
+INSERT INTO `classroomtime` VALUES (156, 103, '教学楼103', 18, '周四 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (157, 201, '教学楼201', 18, '周四 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (158, 202, '教学楼202', 18, '周四 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (159, 203, '教学楼203', 18, '周四 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (160, 301, '教学楼301', 18, '周四 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (161, 302, '教学楼302', 18, '周四 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (162, 303, '教学楼303', 18, '周四 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (163, 101, '教学楼101', 19, '周四 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (164, 102, '教学楼102', 19, '周四 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (165, 103, '教学楼103', 19, '周四 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (166, 201, '教学楼201', 19, '周四 下午 7-8', '不可选');
+INSERT INTO `classroomtime` VALUES (167, 202, '教学楼202', 19, '周四 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (168, 203, '教学楼203', 19, '周四 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (169, 301, '教学楼301', 19, '周四 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (170, 302, '教学楼302', 19, '周四 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (171, 303, '教学楼303', 19, '周四 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (172, 101, '教学楼101', 20, '周四 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (173, 102, '教学楼102', 20, '周四 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (174, 103, '教学楼103', 20, '周四 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (175, 201, '教学楼201', 20, '周四 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (176, 202, '教学楼202', 20, '周四 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (177, 203, '教学楼203', 20, '周四 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (178, 301, '教学楼301', 20, '周四 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (179, 302, '教学楼302', 20, '周四 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (180, 303, '教学楼303', 20, '周四 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (181, 101, '教学楼101', 21, '周五 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (182, 102, '教学楼102', 21, '周五 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (183, 103, '教学楼103', 21, '周五 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (184, 201, '教学楼201', 21, '周五 上午 1-2', '不可选');
+INSERT INTO `classroomtime` VALUES (185, 202, '教学楼202', 21, '周五 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (186, 203, '教学楼203', 21, '周五 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (187, 301, '教学楼301', 21, '周五 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (188, 302, '教学楼302', 21, '周五 上午 1-2', '不可选');
+INSERT INTO `classroomtime` VALUES (189, 303, '教学楼303', 21, '周五 上午 1-2', '可选');
+INSERT INTO `classroomtime` VALUES (190, 101, '教学楼101', 22, '周五 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (191, 102, '教学楼102', 22, '周五 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (192, 103, '教学楼103', 22, '周五 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (193, 201, '教学楼201', 22, '周五 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (194, 202, '教学楼202', 22, '周五 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (195, 203, '教学楼203', 22, '周五 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (196, 301, '教学楼301', 22, '周五 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (197, 302, '教学楼302', 22, '周五 上午 3-4', '可选');
+INSERT INTO `classroomtime` VALUES (198, 303, '教学楼303', 22, '周五 上午 3-4', '不可选');
+INSERT INTO `classroomtime` VALUES (199, 101, '教学楼101', 23, '周五 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (200, 102, '教学楼102', 23, '周五 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (201, 103, '教学楼103', 23, '周五 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (202, 201, '教学楼201', 23, '周五 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (203, 202, '教学楼202', 23, '周五 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (204, 203, '教学楼203', 23, '周五 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (205, 301, '教学楼301', 23, '周五 下午 5-6', '不可选');
+INSERT INTO `classroomtime` VALUES (206, 302, '教学楼302', 23, '周五 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (207, 303, '教学楼303', 23, '周五 下午 5-6', '可选');
+INSERT INTO `classroomtime` VALUES (208, 101, '教学楼101', 24, '周五 下午 7-8', '不可选');
+INSERT INTO `classroomtime` VALUES (209, 102, '教学楼102', 24, '周五 下午 7-8', '不可选');
+INSERT INTO `classroomtime` VALUES (210, 103, '教学楼103', 24, '周五 下午 7-8', '不可选');
+INSERT INTO `classroomtime` VALUES (211, 201, '教学楼201', 24, '周五 下午 7-8', '不可选');
+INSERT INTO `classroomtime` VALUES (212, 202, '教学楼202', 24, '周五 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (213, 203, '教学楼203', 24, '周五 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (214, 301, '教学楼301', 24, '周五 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (215, 302, '教学楼302', 24, '周五 下午 7-8', '可选');
+INSERT INTO `classroomtime` VALUES (216, 303, '教学楼303', 24, '周五 下午 7-8', '不可选');
+INSERT INTO `classroomtime` VALUES (217, 101, '教学楼101', 25, '周五 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (218, 102, '教学楼102', 25, '周五 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (219, 103, '教学楼103', 25, '周五 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (220, 201, '教学楼201', 25, '周五 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (221, 202, '教学楼202', 25, '周五 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (222, 203, '教学楼203', 25, '周五 晚上 9-10', '不可选');
+INSERT INTO `classroomtime` VALUES (223, 301, '教学楼301', 25, '周五 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (224, 302, '教学楼302', 25, '周五 晚上 9-10', '可选');
+INSERT INTO `classroomtime` VALUES (225, 303, '教学楼303', 25, '周五 晚上 9-10', '可选');
+
+-- ----------------------------
+-- Table structure for classtime
+-- ----------------------------
+DROP TABLE IF EXISTS `classtime`;
+CREATE TABLE `classtime`  (
+  `timeid` int(11) NOT NULL AUTO_INCREMENT,
+  `cttime` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`timeid`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of classtime
+-- ----------------------------
+INSERT INTO `classtime` VALUES (1, '周一 上午 1-2');
+INSERT INTO `classtime` VALUES (2, '周一 上午 3-4');
+INSERT INTO `classtime` VALUES (3, '周一 下午 5-6');
+INSERT INTO `classtime` VALUES (4, '周一 下午 7-8');
+INSERT INTO `classtime` VALUES (5, '周一 晚上 9-10');
+INSERT INTO `classtime` VALUES (6, '周二 上午 1-2');
+INSERT INTO `classtime` VALUES (7, '周二 上午 3-4');
+INSERT INTO `classtime` VALUES (8, '周二 下午 5-6');
+INSERT INTO `classtime` VALUES (9, '周二 下午 7-8');
+INSERT INTO `classtime` VALUES (10, '周二 晚上 9-10');
+INSERT INTO `classtime` VALUES (11, '周三 上午 1-2');
+INSERT INTO `classtime` VALUES (12, '周三 上午 3-4');
+INSERT INTO `classtime` VALUES (13, '周三 下午 5-6');
+INSERT INTO `classtime` VALUES (14, '周三 下午 7-8');
+INSERT INTO `classtime` VALUES (15, '周三 晚上 9-10');
+INSERT INTO `classtime` VALUES (16, '周四 上午 1-2');
+INSERT INTO `classtime` VALUES (17, '周四 上午 3-4');
+INSERT INTO `classtime` VALUES (18, '周四 下午 5-6');
+INSERT INTO `classtime` VALUES (19, '周四 下午 7-8');
+INSERT INTO `classtime` VALUES (20, '周四 晚上 9-10');
+INSERT INTO `classtime` VALUES (21, '周五 上午 1-2');
+INSERT INTO `classtime` VALUES (22, '周五 上午 3-4');
+INSERT INTO `classtime` VALUES (23, '周五 下午 5-6');
+INSERT INTO `classtime` VALUES (24, '周五 下午 7-8');
+INSERT INTO `classtime` VALUES (25, '周五 晚上 9-10');
+
+-- ----------------------------
+-- Table structure for cor_ther
+-- ----------------------------
+DROP TABLE IF EXISTS `cor_ther`;
+CREATE TABLE `cor_ther`  (
+  `ctid` int(11) NOT NULL AUTO_INCREMENT,
+  `ctlocal` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `cttime` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `cid` int(11) NULL DEFAULT NULL,
+  `uid` int(11) NULL DEFAULT NULL,
+  `classsort` int(11) NULL DEFAULT NULL,
+  `ctstatus` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `wid` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`ctid`) USING BTREE,
+  INDEX `cid`(`cid`) USING BTREE,
+  INDEX `uid`(`uid`) USING BTREE,
+  INDEX `cor_ther_ibfk_3`(`wid`) USING BTREE,
+  CONSTRAINT `cor_ther_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `course` (`cid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `cor_ther_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `userther` (`uid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `cor_ther_ibfk_3` FOREIGN KEY (`wid`) REFERENCES `weektime` (`wid`) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of cor_ther
+-- ----------------------------
+INSERT INTO `cor_ther` VALUES (1, '教学楼101', '周一 上午 1-2', 1, 1001, 1, '已排课', 1);
+INSERT INTO `cor_ther` VALUES (2, '教学楼101', '周一 上午 3-4', 1, 1001, 1, '已排课', 2);
+INSERT INTO `cor_ther` VALUES (3, '教学楼102', '周二 上午 1-2', 2, 1002, 1, '已排课', 3);
+INSERT INTO `cor_ther` VALUES (4, '教学楼102', '周二 上午 3-4', 2, 1002, 1, '已排课', 4);
+INSERT INTO `cor_ther` VALUES (5, '教学楼103', '周三 上午 1-2', 3, 1003, 1, '已排课', 5);
+INSERT INTO `cor_ther` VALUES (6, '教学楼201', '周四 上午 1-2', 4, 1004, 1, '已排课', 6);
+INSERT INTO `cor_ther` VALUES (7, '教学楼202', '周五 上午 1-2', 5, 1005, 1, '已排课', 7);
+INSERT INTO `cor_ther` VALUES (17, '教学楼101', '周一 上午 3-4', 1, 1001, 2, '已排课', 13);
+INSERT INTO `cor_ther` VALUES (18, '教学楼101', '周一 下午 5-6', 6, 1001, 1, '已排课', 14);
+INSERT INTO `cor_ther` VALUES (20, '教学楼101', '周一 下午 7-8', 1, 1001, 2, '已排课', 15);
+INSERT INTO `cor_ther` VALUES (22, '教学楼102', '周二 晚上 9-10', 7, 1002, 1, '已排课', 16);
+
+-- ----------------------------
+-- Table structure for course
+-- ----------------------------
+DROP TABLE IF EXISTS `course`;
+CREATE TABLE `course`  (
+  `cid` int(11) NOT NULL AUTO_INCREMENT,
+  `cname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `score` decimal(5, 2) NULL DEFAULT NULL,
+  `cdesc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
+  `cstatus` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `climitCount` int(11) NULL DEFAULT NULL,
+  `cmaxCount` int(11) NULL DEFAULT NULL,
+  `clessionCount` int(11) NULL DEFAULT NULL,
+  `csortname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `ctype` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `result` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
+  PRIMARY KEY (`cid`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of course
+-- ----------------------------
+INSERT INTO `course` VALUES (1, 'Java程序设计', 4.00, 'Java语言基础与面向对象编程', '通过', 30, 50, 32, '编程基础', '专业课', NULL);
+INSERT INTO `course` VALUES (2, '数据库原理', 3.50, '关系数据库设计与SQL语言', '通过', 30, 50, 32, '数据结构', '专业课', NULL);
+INSERT INTO `course` VALUES (3, '高等数学', 5.00, '微积分与线性代数', '通过', 100, 150, 64, '数学基础', '公共课', NULL);
+INSERT INTO `course` VALUES (4, '大学英语', 4.00, '英语听说读写综合训练', '通过', 80, 120, 48, '英语基础', '公共课', NULL);
+INSERT INTO `course` VALUES (5, '数据结构', 4.00, '常用数据结构与算法', '通过', 40, 60, 32, '编程基础', '专业课', NULL);
+INSERT INTO `course` VALUES (6, '操作系统', 4.00, '操作系统原理与实现', '通过', 30, 50, 32, '计算机系统', '专业课', '1');
+INSERT INTO `course` VALUES (7, '计算机网络', 3.50, '网络协议与体系结构', '通过', 30, 50, 32, '计算机系统', '专业课', '1');
+INSERT INTO `course` VALUES (8, '软件工程', 3.00, '软件开发流程与方法', '未通过', 30, 50, 32, '软件开发', '专业课', NULL);
+INSERT INTO `course` VALUES (9, '1', 1.00, ' ', '通过', 15, 40, 1, 'Java程序设计', '文史类', '可以');
+INSERT INTO `course` VALUES (10, 'java', 1.00, ' ', '未通过', 15, 40, 8, '无', '实践类', '不行');
+INSERT INTO `course` VALUES (11, 'java2', 1.00, ' ', '未通过', 15, 40, 12, '无', '慕课类', '不行');
+INSERT INTO `course` VALUES (12, '英语', 1.00, ' 英语', '通过', 15, 40, 12, '无', '语言类', '可以');
+INSERT INTO `course` VALUES (13, '2', 1.00, ' ', '未审核', 15, 40, 12, '无', '文史类', '');
+
+-- ----------------------------
+-- Table structure for ct_stu
+-- ----------------------------
+DROP TABLE IF EXISTS `ct_stu`;
+CREATE TABLE `ct_stu`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NULL DEFAULT NULL,
+  `cid` int(11) NULL DEFAULT NULL,
+  `classsort` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `uid`(`uid`) USING BTREE,
+  INDEX `cid`(`cid`) USING BTREE,
+  CONSTRAINT `ct_stu_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `userstu` (`uid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `ct_stu_ibfk_2` FOREIGN KEY (`cid`) REFERENCES `course` (`cid`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ct_stu
+-- ----------------------------
+INSERT INTO `ct_stu` VALUES (2, 2023001, 1, 2);
+
+-- ----------------------------
+-- Table structure for mark
+-- ----------------------------
+DROP TABLE IF EXISTS `mark`;
+CREATE TABLE `mark`  (
+  `mid` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NULL DEFAULT NULL,
+  `cid` int(11) NULL DEFAULT NULL,
+  `scores` decimal(5, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`mid`) USING BTREE,
+  INDEX `uid`(`uid`) USING BTREE,
+  INDEX `cid`(`cid`) USING BTREE,
+  CONSTRAINT `mark_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `userstu` (`uid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `mark_ibfk_2` FOREIGN KEY (`cid`) REFERENCES `course` (`cid`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of mark
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for select_time
+-- ----------------------------
+DROP TABLE IF EXISTS `select_time`;
+CREATE TABLE `select_time`  (
+  `sid` int(11) NOT NULL DEFAULT 1,
+  `starttime` date NULL DEFAULT NULL,
+  `endtime` date NULL DEFAULT NULL,
+  PRIMARY KEY (`sid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of select_time
+-- ----------------------------
+INSERT INTO `select_time` VALUES (1, '2025-06-01', '2025-07-31');
+
+-- ----------------------------
+-- Table structure for useradm
+-- ----------------------------
+DROP TABLE IF EXISTS `useradm`;
+CREATE TABLE `useradm`  (
+  `uid` int(11) NOT NULL,
+  `uname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sex` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `upassword` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `upartment` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `utelephone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '教务处',
+  PRIMARY KEY (`uid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of useradm
+-- ----------------------------
+INSERT INTO `useradm` VALUES (5001, '系统管理员', '男', '123456', '教务处', '13700137001', '教务处');
+
+-- ----------------------------
+-- Table structure for userstu
+-- ----------------------------
+DROP TABLE IF EXISTS `userstu`;
+CREATE TABLE `userstu`  (
+  `uid` int(11) NOT NULL,
+  `uname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sex` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `upassword` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ugrade` int(11) NULL DEFAULT NULL,
+  `upartment` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `utelephone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '学生',
+  PRIMARY KEY (`uid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of userstu
+-- ----------------------------
+INSERT INTO `userstu` VALUES (2023001, '张三', '男', '123456', 2023, '计算机学院', '13800138001', '学生');
+INSERT INTO `userstu` VALUES (2023002, '李四', '女', '123456', 2023, '计算机学院', '13800138002', '学生');
+INSERT INTO `userstu` VALUES (2023003, '王五', '男', '123456', 2023, '数学学院', '13800138003', '学生');
+INSERT INTO `userstu` VALUES (2023004, '赵六', '女', '123456', 2022, '物理学院', '13800138004', '学生');
+INSERT INTO `userstu` VALUES (2023005, '钱七', '男', '123456', 2022, '化学学院', '13800138005', '学生');
+INSERT INTO `userstu` VALUES (2023006, '王五', '男', '123456', 2023, '计算机学院', '18705012115', '学生');
+
+-- ----------------------------
+-- Table structure for userther
+-- ----------------------------
+DROP TABLE IF EXISTS `userther`;
+CREATE TABLE `userther`  (
+  `uid` int(11) NOT NULL,
+  `uname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sex` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `upassword` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `upartment` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `utelephone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '教师',
+  PRIMARY KEY (`uid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of userther
+-- ----------------------------
+INSERT INTO `userther` VALUES (1001, '张教授', '男', '123456', '计算机学院', '13900139001', '教师');
+INSERT INTO `userther` VALUES (1002, '李教授', '女', '123456', '数学学院', '13900139002', '教师');
+INSERT INTO `userther` VALUES (1003, '王教授', '男', '123456', '物理学院', '13900139003', '教师');
+INSERT INTO `userther` VALUES (1004, '赵教授', '女', '123456', '化学学院', '13900139004', '教师');
+INSERT INTO `userther` VALUES (1005, '钱教授', '男', '123456', '计算机学院', '13900139005', '教师');
+
+-- ----------------------------
+-- Table structure for weektime
+-- ----------------------------
+DROP TABLE IF EXISTS `weektime`;
+CREATE TABLE `weektime`  (
+  `wid` int(11) NOT NULL AUTO_INCREMENT,
+  `startweek` int(11) NULL DEFAULT NULL,
+  `endweek` int(11) NULL DEFAULT NULL,
+  `crtid` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`wid`) USING BTREE,
+  INDEX `crtid`(`crtid`) USING BTREE,
+  CONSTRAINT `weektime_ibfk_1` FOREIGN KEY (`crtid`) REFERENCES `classroomtime` (`crtid`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of weektime
+-- ----------------------------
+INSERT INTO `weektime` VALUES (1, 1, 8, 1);
+INSERT INTO `weektime` VALUES (2, 9, 16, 2);
+INSERT INTO `weektime` VALUES (3, 1, 8, 6);
+INSERT INTO `weektime` VALUES (4, 9, 16, 7);
+INSERT INTO `weektime` VALUES (5, 1, 16, 11);
+INSERT INTO `weektime` VALUES (6, 1, 16, 16);
+INSERT INTO `weektime` VALUES (7, 1, 16, 21);
+INSERT INTO `weektime` VALUES (8, 1, 16, 26);
+INSERT INTO `weektime` VALUES (9, 1, 16, 31);
+INSERT INTO `weektime` VALUES (10, 1, 16, 36);
+INSERT INTO `weektime` VALUES (11, 1, 16, 41);
+INSERT INTO `weektime` VALUES (12, 1, 16, 46);
+INSERT INTO `weektime` VALUES (13, 1, 32, 10);
+INSERT INTO `weektime` VALUES (14, 1, 32, 19);
+INSERT INTO `weektime` VALUES (15, 1, 32, 28);
+INSERT INTO `weektime` VALUES (16, 1, 32, 83);
+INSERT INTO `weektime` VALUES (27, 1, 5, 57);
+INSERT INTO `weektime` VALUES (28, 6, 10, 68);
+
+SET FOREIGN_KEY_CHECKS = 1;
